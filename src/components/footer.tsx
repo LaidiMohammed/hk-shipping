@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-[1.2fr_0.8fr_0.8fr_1fr] gap-10 pb-12 border-b border-white/10">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-[#E63946] grid place-items-center font-black">HK</div>
+              <img src="/hk.jpg" alt="HK Shipping" className="w-10 h-10 rounded-full object-cover border border-white/20" />
               <div>
                 <div className="font-black leading-none">HK SHIPPING</div>
                 <div className="text-[11px] tracking-[0.2em] text-[#E63946] font-bold">EXPRESS</div>

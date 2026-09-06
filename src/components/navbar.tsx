@@ -48,10 +48,8 @@ export default function Navbar() {
             }`}
           >
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 pl-3">
-              <div className="w-9 h-9 rounded-full bg-[#0A1931] flex items-center justify-center text-white font-black text-[13px] tracking-tighter">
-                HK
-              </div>
+            <Link href="/" className="flex items-center gap-3 pl-2">
+              <img src="/hk.jpg" alt="HK Shipping" className="w-10 h-10 rounded-full object-cover border border-black/10 shadow-sm" />
               <div className="hidden sm:block leading-none">
                 <div className="font-black text-[14px] tracking-tight text-[#0A1931]">HK SHIPPING</div>
                 <div className="text-[10px] tracking-[0.2em] text-[#E63946] font-bold">EXPRESS</div>
