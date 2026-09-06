@@ -37,7 +37,7 @@ export default function Navbar() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? "py-3" : "py-6"}`}
+        className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? "py-2 md:py-3" : "py-3 md:py-6"}`}
       >
         <div className="mx-auto max-w-[1280px] px-4">
           <div
@@ -100,7 +100,7 @@ export default function Navbar() {
                 <Package size={16} />
               </Link>
 
-              <button onClick={() => setOpen(!open)} className="lg:hidden w-10 h-10 rounded-full bg-[#0A1931] text-white grid place-items-center">
+              <button onClick={() => setOpen(!open)} className="lg:hidden w-10 h-10 rounded-full bg-[#0A1931] text-white grid place-items-center active:scale-95 transition">
                 {open ? <X size={18} /> : <Menu size={18} />}
               </button>
             </div>
@@ -110,35 +110,32 @@ export default function Navbar() {
 
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-[#0A1931] pt-24 px-6"
-          >
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              className="flex flex-col gap-2"
-            >
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-40 bg-[#0A1931] pt-20 px-5 overflow-y-auto">
+            <motion.div initial={{ y: 16, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="flex flex-col gap-1 pb-28">
               {links.map((l, i) => (
-                <motion.div key={l.href} initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: i * 0.05 }}>
-                  <Link href={l.href} onClick={() => setOpen(false)} className="text-3xl font-black text-white tracking-tight hover:text-[#E63946] transition">
-                    {l.label}
+                <motion.div key={l.href} initial={{ x: -12, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: i * 0.04 }}>
+                  <Link href={l.href} onClick={() => setOpen(false)} className="flex items-center justify-between py-3 border-b border-white/10 text-[28px] font-black text-white tracking-tighter active:text-[#E63946] transition">
+                    {l.label} <span className="text-white/20 text-lg">→</span>
                   </Link>
                 </motion.div>
               ))}
-              <div className="h-px bg-white/10 my-6" />
+              <div className="grid grid-cols-2 gap-3 mt-6">
+                <a href="https://wa.me/213550000000" className="bg-white text-[#0A1931] py-3 rounded-full font-black text-center text-sm">WhatsApp</a>
+                <Link href="/tracking" onClick={()=>setOpen(false)} className="bg-white/10 border border-white/20 text-white py-3 rounded-full font-bold text-center text-sm">Suivi Colis</Link>
+              </div>
+              <div className="h-px bg-white/10 my-5" />
+              <div className="text-white/50 text-xs font-bold tracking-widest mb-2">LANGUE</div>
               <div className="flex gap-2">
                 {locales.map((l) => (
-                  <button key={l} onClick={() => setLocale(l)} className={`flex-1 py-3 rounded-full font-bold ${locale===l?"bg-[#E63946] text-white":"bg-white text-black"}`}>
+                  <button key={l} onClick={() => setLocale(l)} className={`flex-1 py-3.5 rounded-full font-black text-sm active:scale-95 transition ${locale===l?"bg-[#E63946] text-white":"bg-white text-black"}`}>
                     {localeNames[l]}
                   </button>
                 ))}
               </div>
-              <Link href="/quote" onClick={()=>setOpen(false)} className="mt-4 bg-[#E63946] text-white text-center py-4 rounded-full font-black text-lg">
-                {t.nav.quote}
+              <Link href="/quote" onClick={()=>setOpen(false)} className="mt-5 bg-[#E63946] text-white text-center py-4 rounded-full font-black text-[17px] shadow-lg active:scale-[0.98] transition">
+                {t.nav.quote} →
               </Link>
+              <div className="mt-4 text-center text-white/40 text-xs">Alger • Oran • Guangzhou • Yiwu</div>
             </motion.div>
           </motion.div>
         )}

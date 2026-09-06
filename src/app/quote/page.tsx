@@ -16,7 +16,7 @@ export default function QuotePage(){
     alert("Devis envoyé via WhatsApp & Email !");
   };
   return (
-    <div className="mx-auto max-w-[1280px] px-6 py-12">
+    <div className="mx-auto max-w-[1280px] px-4 md:px-6 py-8 md:py-12">
       <div className="max-w-3xl mx-auto">
         <div className="text-center">
           <div className="inline-flex items-center gap-2 bg-[#0A1931] text-white px-4 py-2 rounded-full text-xs font-bold"><Calculator size={14}/> CALCULATEUR INSTANTANÉ</div>

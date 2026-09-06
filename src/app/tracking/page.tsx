@@ -22,7 +22,7 @@ export default function TrackingPage(){
     });
   };
   return (
-    <div className="mx-auto max-w-[880px] px-6 py-12">
+    <div className="mx-auto max-w-[880px] px-4 md:px-6 py-8 md:py-12">
       <div className="text-center">
         <h1 className="font-black text-4xl tracking-tighter">Suivre mon colis</h1>
         <p className="text-black/60 mt-2">Entrez votre code HK-XXXXXX (ex: HK-784291)</p>

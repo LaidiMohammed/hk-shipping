@@ -6,9 +6,9 @@ import { useI18n } from "@/lib/i18n-context";
 export default function Footer() {
   const { t } = useI18n();
   return (
-    <footer className="bg-[#0A1931] text-white pt-16 pb-8 overflow-hidden">
-      <div className="mx-auto max-w-[1280px] px-6">
-        <div className="grid md:grid-cols-[1.2fr_0.8fr_0.8fr_1fr] gap-10 pb-12 border-b border-white/10">
+    <footer className="bg-[#0A1931] text-white pt-10 md:pt-16 pb-[calc(96px+env(safe-area-inset-bottom))] md:pb-8 overflow-hidden">
+      <div className="mx-auto max-w-[1280px] px-4 md:px-6">
+        <div className="grid md:grid-cols-[1.2fr_0.8fr_0.8fr_1fr] gap-8 md:gap-10 pb-8 md:pb-12 border-b border-white/10">
           <div>
             <div className="flex items-center gap-3 mb-4">
               <img src="/hk.jpg" alt="HK Shipping" className="w-10 h-10 rounded-full object-cover border border-white/20" />

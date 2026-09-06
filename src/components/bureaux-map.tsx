@@ -46,18 +46,18 @@ export default function BureauxMap({ filter }: { filter?: "DZ" | "CN" }) {
 
   return (
     <div className="grid lg:grid-cols-[360px_1fr] gap-4">
-      <div className="bg-white rounded-[20px] border border-black/10 p-4 flex flex-col gap-3">
+      <div className="bg-white rounded-[20px] border border-black/10 p-3 md:p-4 flex flex-col gap-3">
         <div className="flex gap-2 p-1 bg-[#FFF8F0] rounded-full border">
-          <button onClick={() => setCountry("DZ")} className={`flex-1 py-2 rounded-full font-bold text-sm transition ${country==="DZ"?"bg-[#0A1931] text-white":"text-black/60"}`}>🇩🇿 Algérie (3)</button>
-          <button onClick={() => setCountry("CN")} className={`flex-1 py-2 rounded-full font-bold text-sm transition ${country==="CN"?"bg-[#E63946] text-white":"text-black/60"}`}>🇨🇳 Chine (3)</button>
+          <button onClick={() => setCountry("DZ")} className={`flex-1 py-2.5 md:py-2 rounded-full font-black text-sm transition ${country==="DZ"?"bg-[#0A1931] text-white":"text-black/60"}`}>🇩🇿 Algérie</button>
+          <button onClick={() => setCountry("CN")} className={`flex-1 py-2.5 md:py-2 rounded-full font-black text-sm transition ${country==="CN"?"bg-[#E63946] text-white":"text-black/60"}`}>🇨🇳 Chine</button>
         </div>
 
-        <div className="space-y-2 max-h-[420px] overflow-auto pr-1">
+        <div className="flex lg:flex-col gap-2 overflow-x-auto scrollbar-hide snap-x lg:overflow-visible -mx-3 px-3 lg:mx-0 lg:px-0 pb-1 lg:pb-0 lg:max-h-[320px] lg:overflow-auto lg:pr-1">
           {filtered.map(loc => (
             <button
               key={loc.id}
               onClick={() => setActive(loc.id)}
-              className={`w-full text-left rounded-2xl p-4 border transition ${active===loc.id ? "bg-[#0A1931] text-white border-transparent shadow-lg" : "bg-[#FFF8F0] border-black/10 hover:border-black/20"}`}
+              className={`snap-center lg:snap-align-none shrink-0 w-[78vw] max-w-[280px] lg:w-full text-left rounded-2xl p-4 border transition ${active===loc.id ? "bg-[#0A1931] text-white border-transparent shadow-lg" : "bg-[#FFF8F0] border-black/10"}`}
             >
               <div className="flex items-start justify-between gap-2">
                 <div>
@@ -84,7 +84,7 @@ export default function BureauxMap({ filter }: { filter?: "DZ" | "CN" }) {
         )}
       </div>
 
-      <div className="h-[520px] rounded-[20px] overflow-hidden border border-black/10 bg-[#E2E8F0] relative">
+      <div className="h-[360px] md:h-[520px] rounded-[20px] overflow-hidden border border-black/10 bg-[#E2E8F0] relative">
         <div className="relative h-full">
           {/* @ts-ignore */}
           <MapContainer center={center} zoom={country==="CN" ? 5 : 6} style={{ height: "100%", width: "100%" }} scrollWheelZoom={false}>

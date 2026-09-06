@@ -12,7 +12,7 @@ const services = [
 
 export default function ServicesPage(){
   return (
-    <div className="mx-auto max-w-[1280px] px-6 py-12">
+    <div className="mx-auto max-w-[1280px] px-4 md:px-6 py-8 md:py-12">
       <div className="text-center max-w-2xl mx-auto">
         <div className="text-[#E63946] font-black tracking-[0.2em] text-xs">SERVICES</div>
         <h1 className="font-black text-5xl tracking-tighter leading-none mt-3">Un service pour <span className="text-[#E63946]">chaque besoin</span></h1>

@@ -16,7 +16,7 @@ export default function ContactPage(){
   };
 
   return (
-    <div className="mx-auto max-w-[1280px] px-6 py-12">
+    <div className="mx-auto max-w-[1280px] px-4 md:px-6 py-8 md:py-12">
       <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8">
         <div>
           <h1 className="font-black text-4xl tracking-tighter">Parlons de votre colis</h1>

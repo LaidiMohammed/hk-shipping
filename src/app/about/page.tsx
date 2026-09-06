@@ -3,7 +3,7 @@ import BureauxMap from "@/components/bureaux-map";
 export default function AboutPage() {
   return (
     <div className="flex flex-col">
-      <section className="mx-auto max-w-[1280px] px-6 py-12">
+      <section className="mx-auto max-w-[1280px] px-4 md:px-6 py-8 md:py-12">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div>
             <div className="text-[#E63946] font-black tracking-[0.2em] text-xs">À PROPOS</div>

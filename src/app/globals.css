@@ -27,26 +27,32 @@
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 
+html { -webkit-text-size-adjust: 100%; }
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  padding-bottom: env(safe-area-inset-bottom);
 }
+
+/* Hide scrollbar for snap areas */
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.snap-x { scroll-snap-type: x mandatory; }
+.snap-center { scroll-snap-align: center; }
+.snap-start { scroll-snap-align: start; }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-thumb { background: var(--hk-red); border-radius: 999px; }
 ::-webkit-scrollbar-track { background: transparent; }
 
-/* Selection */
 ::selection { background: var(--hk-red); color: white; }
-
-/* Text balance */
 h1,h2,h3 { text-wrap: balance; }
 
-/* Grain texture overlay */
 .grain::after {
   content: "";
   position: absolute;
@@ -56,22 +62,15 @@ h1,h2,h3 { text-wrap: balance; }
   mix-blend-mode: multiply;
 }
 
-/* Shimmer */
-@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-.shimmer::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-  animation: shimmer 2.5s infinite;
-}
-
-/* Marquee */
 @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-/* Float */
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
-/* Leaflet */
 .leaflet-container { font-family: var(--font-geist-sans) !important; border-radius: 20px; }
 .leaflet-popup-content-wrapper { border-radius: 16px !important; }
+
+/* Phone thumb zone: ensure inputs 44px min */
+input, select, textarea, button { font-size: 16px; }
+@media (min-width: 768px) { input, select, textarea { font-size: 14px; } }
+
+/* Prevent horizontal overflow */
+img { max-width: 100%; }

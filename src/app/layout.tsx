@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import SmoothScroll from "@/components/smooth-scroll";
+import MobileBar from "@/components/mobile-bar";
 import { I18nProvider } from "@/lib/i18n-context";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -24,8 +25,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <I18nProvider>
           <SmoothScroll>
             <Navbar />
-            <main className="flex-1 flex flex-col pt-[88px]">{children}</main>
+            <main className="flex-1 flex flex-col pt-[72px] md:pt-[88px] pb-[88px] lg:pb-0">{children}</main>
             <Footer />
+            <MobileBar />
           </SmoothScroll>
         </I18nProvider>
       </body>

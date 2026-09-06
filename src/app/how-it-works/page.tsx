@@ -6,7 +6,7 @@ export default function HowPage(){
     {n:"04", t:"Vous recevez", d:"Livraison 48 wilayas, suivi HK-XXXXX temps réel, paiement à la réception. Zéro stress.", img:"https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=600&q=80"},
   ];
   return (
-    <div className="mx-auto max-w-[1280px] px-6 py-12">
+    <div className="mx-auto max-w-[1280px] px-4 md:px-6 py-8 md:py-12">
       <div className="text-center">
         <div className="text-[#E63946] font-black tracking-[0.2em] text-xs">PROCESSUS</div>
         <h1 className="font-black text-5xl tracking-tighter mt-3">Comment ça marche ?</h1>
