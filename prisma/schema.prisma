@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CLIENT
+  ADMIN_DZ
+  ADMIN_CN
+}
+
+enum OrderStatus {
+  PENDING
+  NEGOTIATING
+  VALIDATED
+  IN_CHINA
+  IN_AIR
+  AT_DZ_DEPOT
+  OUT_FOR_DELIVERY
+  DELIVERED
+  REJECTED
+}
+
+enum ProductCategory {
+  SMALL
+  LARGE
+}
+
+model User {
+  id                String   @id @default(cuid())
+  phone             String   @unique
+  email             String?  @unique
+  name              String
+  prenom            String
+  wilaya            String
+  address           String
+  extraInfo         String?
+  wantsHomeDelivery Boolean  @default(false)
+  role              Role     @default(CLIENT)
+  passwordHash      String?
+  createdAt         DateTime @default(now())
+  orders            Order[]
+  @@index([phone])
+  @@index([role])
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  code8           String      @unique
+  qrData          String?
+  clientId        String
+  client          User        @relation(fields: [clientId], references: [id])
+  status          OrderStatus @default(PENDING)
+  isLarge         Boolean     @default(false)
+  isDismantlable  Boolean?
+  grossisteCount  Int?
+  negotiationPrice Int? // in DA
+  wantsHomeDelivery Boolean @default(false)
+  deliveryAddress String?
+  trackingSteps   Json?       // [{status, at, by}]
+  adminDzId       String?
+  adminCnId       String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  products        Product[]
+  @@index([status])
+  @@index([clientId])
+  @@index([createdAt])
+  @@index([code8])
+}
+
+model Product {
+  id         String          @id @default(cuid())
+  orderId    String
+  order      Order           @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  name       String
+  imageUrl   String?
+  length     Float?
+  width      Float?
+  height     Float?
+  weight     Float?
+  qty        Int
+  unitPrice  Int // DA per piece
+  category   ProductCategory @default(SMALL)
+  createdAt  DateTime        @default(now())
+}
+
+model ForbiddenRule {
+  id                     String @id @default(cuid())
+  name                   String @unique
+  reason                 String
+  isDismantlableRequired Boolean @default(false)
+  createdAt              DateTime @default(now())
+}
+
+model Actualite {
+  id        String   @id @default(cuid())
+  title     String
+  body      String
+  publishedAt DateTime @default(now())
+}

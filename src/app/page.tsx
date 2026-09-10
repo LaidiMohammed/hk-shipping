@@ -14,7 +14,7 @@ export default function Home() {
       <HowTeaser />
 
       {/* Coverage */}
-      <section className="mx-auto max-w-[1280px] px-4 md:px-4 md:px-6 py-8 md:py-10 md:py-16">
+      <section className="mx-auto max-w-[1280px] px-4 md:px-6 py-8 md:py-16">
         <div className="grid lg:grid-cols-2 gap-6 md:gap-8 items-center">
           <div>
             <div className="text-[#E63946] font-black tracking-[0.2em] text-[11px] md:text-xs mb-2 md:mb-3">RÉSEAU GLOBAL</div>
@@ -23,7 +23,7 @@ export default function Home() {
             </h2>
             <p className="text-black/60 mt-3 md:mt-4 text-[14px] md:text-base leading-relaxed">Entrepôts à Guangzhou, Yiwu & Shenzhen. Collecte quotidienne, regroupement gratuit, contrôle qualité photo avant envoi.</p>
             <div className="grid grid-cols-3 gap-2 md:gap-4 mt-6 md:mt-8">
-              {[{k:"10-15j",l:"Air Express"},{k:"25-35j",l:"Mer Éco"},{k:"0%",l:"Casse"}].map(i=>(
+              {[{k:"10-15j",l:"Air Express"},{k:"12-15j",l:"Air Éco"},{k:"0%",l:"Casse"}].map(i=>(
                 <div key={i.k} className="bg-white border border-black/10 rounded-2xl p-3 md:p-4 text-center">
                   <div className="font-black text-[16px] md:text-xl">{i.k}</div><div className="text-[11px] md:text-xs text-black/50 leading-tight">{i.l}</div>
                 </div>

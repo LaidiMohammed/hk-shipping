@@ -1,6 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, Package } from "lucide-react";
 import { useI18n } from "@/lib/i18n-context";
@@ -8,9 +9,22 @@ import { locales, localeNames } from "@/lib/translations";
 
 export default function Navbar() {
   const { locale, setLocale, t } = useI18n();
+  const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [progress, setProgress] = useState(0);
+  const clicks = useRef(0);
+  const timer = useRef<NodeJS.Timeout | null>(null);
+
+  const handleBadgeClick = () => {
+    clicks.current += 1;
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = setTimeout(() => { clicks.current = 0; }, 3000);
+    if (clicks.current >= 5) {
+      clicks.current = 0;
+      router.push("/admin/login?easter=1");
+    }
+  };
 
   useEffect(() => {
     const onScroll = () => {
@@ -47,14 +61,16 @@ export default function Navbar() {
                 : "bg-white border-black/5 shadow-sm"
             }`}
           >
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 pl-2">
-              <img src="/hk.jpg" alt="HK Shipping" className="w-10 h-10 rounded-full object-cover border border-black/10 shadow-sm" />
-              <div className="hidden sm:block leading-none">
+            {/* Logo - 5 clicks = hidden admin */}
+            <div className="flex items-center gap-3 pl-2">
+              <button onClick={handleBadgeClick} aria-label="HK badge" className="w-10 h-10 rounded-full overflow-hidden border border-black/10 shadow-sm active:scale-95 transition">
+                <img src="/hk.jpg" alt="HK Shipping" className="w-full h-full object-cover" draggable={false} />
+              </button>
+              <Link href="/" className="hidden sm:block leading-none">
                 <div className="font-black text-[14px] tracking-tight text-[#0A1931]">HK SHIPPING</div>
                 <div className="text-[10px] tracking-[0.2em] text-[#E63946] font-bold">EXPRESS</div>
-              </div>
-            </Link>
+              </Link>
+            </div>
 
             {/* Desktop Links */}
             <div className="hidden lg:flex items-center gap-1 bg-[#0A1931] rounded-full p-1">
