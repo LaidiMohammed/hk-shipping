@@ -24,11 +24,15 @@ export default function AdminDz() {
     setOrders(prev => prev.map(o => o.code8 === code8 ? { ...o, status: "REJECTED" } : o));
   };
 
+  const exportExcel = () => {
+    window.location.href = "/api/admin/reports?format=excel&month=" + new Date().toISOString().slice(0, 7);
+  };
+
   return (
     <div className="mx-auto max-w-[1280px] px-4 md:px-6 py-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <h1 className="font-black text-2xl md:text-3xl tracking-tighter">Admin DZ — Validation & Revenu</h1>
-        <button className="inline-flex items-center gap-2 bg-[#0A1931] text-white px-4 py-2 rounded-full text-sm font-bold"><Download size={14} /> Export Excel (mois)</button>
+        <button onClick={exportExcel} className="inline-flex items-center gap-2 bg-[#0A1931] text-white px-4 py-2 rounded-full text-sm font-bold active:scale-95"><Download size={14} /> Export Excel (mois)</button>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
@@ -72,9 +76,14 @@ export default function AdminDz() {
       </div>
 
       <div className="mt-8 bg-white border border-black/10 rounded-2xl p-5">
-        <h3 className="font-black flex items-center gap-2"><Package size={16}/> Actualités (à publier)</h3>
-        <div className="mt-2 text-sm text-black/50">Gérez les actualités visibles sur la page d’accueil.</div>
-        <button className="mt-3 bg-[#E63946] text-white px-4 py-2 rounded-full text-sm font-bold">+ Nouvelle actualité</button>
+        <h3 className="font-black flex items-center gap-2"><Package size={16}/> Actualités & Forbidden</h3>
+        <div className="mt-2 text-sm text-black/50">Gérez les actualités visibles sur la page d’accueil + liste interdite.</div>
+        <div className="mt-3 flex gap-2">
+          <button onClick={()=>alert('Actualité: à brancher Supabase Actualite table')} className="bg-[#E63946] text-white px-4 py-2 rounded-full text-sm font-bold">+ Actualité</button>
+          <button onClick={()=> fetch('/api/admin/forbidden').then(r=>r.json()).then(d=>alert(JSON.stringify(d.rules.slice(0,3),null,2)))} className="bg-white border border-black/10 px-4 py-2 rounded-full text-sm font-bold">Voir interdits</button>
+          <button onClick={()=> {const n=prompt('Nom interdit?'); const r=prompt('Raison?'); if(n&&r) fetch('/api/admin/forbidden',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:n,reason:r})}).then(()=>alert('Ajouté'))}} className="bg-white border border-black/10 px-4 py-2 rounded-full text-sm font-bold">+ Ajouter interdit</button>
+        </div>
+        <div className="mt-3 text-xs text-black/30">Forbidden géré par DZ — visible en warning doux sur /client/commande.</div>
       </div>
     </div>
   );
