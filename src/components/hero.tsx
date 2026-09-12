@@ -2,7 +2,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Clock, MapPin } from "lucide-react";
+import { ArrowRight, ShieldCheck, Clock, MapPin, ShoppingCart } from "lucide-react";
 import { useI18n } from "@/lib/i18n-context";
 
 export default function Hero() {
@@ -44,12 +44,17 @@ export default function Hero() {
 
             <div className="flex flex-col gap-3">
               <div className="flex flex-col gap-3">
-                <Link href="/quote" className="inline-flex items-center justify-center gap-2 bg-[#E63946] text-white px-6 py-[14px] md:py-4 rounded-full font-black text-[15px] active:scale-[0.98] hover:bg-[#d6323f] transition shadow-[0_8px_24px_rgba(230,57,70,0.4)] w-full sm:w-auto">
-                  {t.hero.ctaPrimary} <ArrowRight size={18} />
+                <Link href="/client/commande" className="inline-flex items-center justify-center gap-2 bg-[#E63946] text-white px-6 py-[14px] md:py-4 rounded-full font-black text-[15px] active:scale-[0.98] hover:bg-[#d6323f] transition shadow-[0_8px_24px_rgba(230,57,70,0.4)] w-full sm:w-auto">
+                  Commander Maintenant <ArrowRight size={18} />
                 </Link>
-                <Link href="/tracking" className="inline-flex items-center justify-center gap-2 bg-white text-[#0A1931] px-6 py-[14px] md:py-4 rounded-full font-black text-[15px] active:scale-[0.98] transition w-full sm:w-auto">
-                  <MapPin size={18} /> {t.hero.ctaSecondary}
-                </Link>
+                <div className="flex gap-2">
+                  <Link href="/tracking" className="flex-1 inline-flex items-center justify-center gap-2 bg-white text-[#0A1931] px-4 py-[14px] md:py-4 rounded-full font-black text-[13px] md:text-[15px] active:scale-[0.98] transition">
+                    <MapPin size={16} /> {t.hero.ctaSecondary}
+                  </Link>
+                  <Link href="/quote" className="flex-1 inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white px-4 py-[14px] md:py-4 rounded-full font-bold text-[13px] md:text-sm active:scale-[0.98] transition">
+                    Devis
+                  </Link>
+                </div>
               </div>
               <div className=" hidden md:flex items-center gap-2 text-white/50 text-xs">
                 <ShieldCheck size={14} className="text-green-400" /> Paiement à la livraison • Aucune avance

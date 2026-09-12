@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { MessageCircle, FileText, Search, Home } from "lucide-react";
+import { MessageCircle, Search, Home, ShoppingCart } from "lucide-react";
 
 export default function MobileBar() {
   return (
@@ -12,8 +12,8 @@ export default function MobileBar() {
         <Link href="/tracking" className="flex flex-col items-center gap-1 px-3 py-1 text-white/60 hover:text-white">
           <Search size={18} /><span className="text-[10px] font-bold">SUIVI</span>
         </Link>
-        <Link href="/quote" className="bg-[#E63946] text-white rounded-full px-5 py-3 flex items-center gap-2 font-black text-sm shadow-lg active:scale-95 transition">
-          <FileText size={16} /> Devis
+        <Link href="/client/commande" className="bg-[#E63946] text-white rounded-full px-5 py-3 flex items-center gap-2 font-black text-sm shadow-lg active:scale-95 transition">
+          <ShoppingCart size={16} /> Commander
         </Link>
         <a href="https://wa.me/213550000000" target="_blank" className="flex flex-col items-center gap-1 px-3 py-1 text-white bg-white/10 rounded-full">
           <MessageCircle size={18} /><span className="text-[10px] font-bold">WHATSAPP</span>
